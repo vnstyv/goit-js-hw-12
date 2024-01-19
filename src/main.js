@@ -78,6 +78,22 @@ async function onSubmit(event) {
     }
 }
 
+function searchImg(q, page) {
+  axios.defaults.baseURL = 'https://pixabay.com';
+
+  return axios.get('/api/', {
+    params: {
+      key: '34228101-50b55348103eeb6dd10b59f8d',
+      q,
+      image_type: 'photo',
+      orientation: 'horizontal',
+      safesearch: true,
+      page,
+      per_page: 40,
+    },
+  });
+}
+
 function renderImg(hits = []) {
   return hits.reduce((html, hit) => {
     return (
